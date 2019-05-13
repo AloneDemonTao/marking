@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+	    <meta http-equiv="Expires" content="0">
+	    <meta http-equiv="Pragma" content="no-cache"/>
+	    <meta name="renderer" content="webkit">
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	    <meta name="format-detection" content="telephone=no, email=no" />
+		<title>跟车走访</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" href="../css/iconfont.css" />
+	    <link rel="stylesheet" href="../css/view.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+	   
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="head">
+				<div class="back">
+					<i class="mui-icon iconfont icon-left-arrow"></i> 
+				</div>
+			</div>
+			<div class="text-head">
+				<p>跟车走访</p>
+			</div>
+		</div>
+		
+		<div class="follow-head1">
+			<div class="shift">
+				<div >
+					<ul class="mui-table-view">
+					    <li id="showUserPicker" class="mui-table-view-cell">
+					        <a class="mui-navigate-right">
+					        	<div class="action">
+					        		<div class="star">*</div>
+					        		<div class="time">城市</div>
+					        		<div class="month"><div id='userResult' class="ui-alert"></div></div>
+					        	</div>
+					        </a>
+					    </li>
+					</ul>
+					<ul class="mui-table-view"> 
+				    </li>
+				        <li class="mui-table-view-cell mui-collapse">
+				            <a class="mui-navigate-right" href="#"><sapn class="text1">跟车客户</span></a>
+				            <div class="mui-collapse-content board-content">
+				                <div class="content1">
+				                	<div class="left-con"><i class="mui-icon iconfont icon-biaodiandidian"></i></div>
+				                	<div class="rigth-con"><span>广西壮族自治区烟草公司桂林公司文化宫直营店</span></span></div>
+				                </div>
+				                <div class="content2">
+				                	<div class="phone-num"><span>联系方式：1852535423</sapn></div>
+				                	<div class="phnoe"><i class="mui-icon iconfont icon-dianhua"></i></div>
+				                </div>
+				                <div class="boder"></div>
+				            </div>
+				            <div class="mui-collapse-content board-content">
+				                <div class="content1">
+				                	<div class="left-con"><i class="mui-icon iconfont icon-biaodiandidian"></i></div>
+				                	<div class="rigth-con"><span>广西壮族自治区烟草公司桂林公司文化宫直营店</span></span></div>
+				                </div>
+				                <div class="content2">
+				                	<div class="phone-num"><span>联系方式：1852535423</sapn></div>
+				                	<div class="phnoe"><i class="mui-icon iconfont icon-dianhua"></i></div>
+				                </div>
+				            </div>
+				        </li>
+				  	</ul>
+			  	</div>
+			  	<div class="according-text">
+					<div class="bry">
+						<textarea rows="5" cols="20" class="area">请输入跟车走访内容…</textarea>
+					</div>
+				</div>
+				<div class="Community-last">
+					<div class="one"><p>上传照片</p></div>
+					<div class="picture">
+						<iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>  
+					    <form name="formHead" method="post" action="" id="formHead" enctype="multipart/form-data" target="uploadfrm">  
+					  
+					        <div>  
+					            <div>  
+					                <i type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();" class="mui-icon iconfont icon-paizhaocopy"></i> 
+					            </div>  
+					            <div>  
+					                <div id="DivUp" style="display: none">  
+					                    <input type="submit" data-inline="true" id="BtnUp" value="确认上传" data-mini="true" />  
+					                </div>  
+					            </div>  
+					        </div>  
+					    </form>  
+					    <div data-role="fieldcontain">  
+					        <div id="localImag">  
+					            <img id="preview" width="-1" height="-1" style="display: none" />  
+					        </div>  
+					    </div>  	
+					</div>
+				</div>
+				<div id="info"></div>
+				<div id='toastBtn' class="Community-Bu"><button type="button" >提交</button></div>
+				
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<!--<script src="../js/mui.picker.min.js"></script>-->
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//普通示例
+					var userPicker = new $.PopPicker();
+					userPicker.setData([{
+						value: 'ywj',
+						text: '南宁'
+					}, {
+						value: 'aaa',
+						text: '南京'
+					}, {
+						value: 'lj',
+						text: '四川'
+					}, {
+						value: 'ymt',
+						text: '云南'
+					}, {
+						value: 'shq',
+						text: '南宁'
+					}, {
+						value: 'zhbh',
+						text: '北海'
+					}, {
+						value: 'zhy',
+						text: '玉林'
+					}, {
+						value: 'gyf',
+						text: '河池'
+					}, {
+						value: 'zhz',
+						text: '临桂'
+					}, {
+						value: 'gezh', 
+						text: '北海'
+					}]);
+					var showUserPickerButton = doc.getElementById('showUserPicker');
+					var userResult = doc.getElementById('userResult');
+					showUserPickerButton.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+						
+							userResult.innerText = JSON.stringify(items[0].text).substring(1,JSON.stringify(items[0].text).length-1);
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					//-----------------------------------------
+					//级联示例
+		
+				});
+			})(mui, document);
+			
+			var info = document.getElementById("info");
+
+			document.getElementById("toastBtn").addEventListener('tap', function() {
+				mui.toast('提交成功');
+			});
+			
+			
+			function setImagePreview() {  
+            var preview, img_txt, localImag, file_head = document.getElementById("file_head"),  
+            picture = file_head.value;  
+            if (!picture.match(/.jpg|.gif|.png|.bmp/i)) return alert("您上传的图片格式不正确，请重新选择！"),  
+            !1;  
+            if (preview = document.getElementById("preview"), file_head.files && file_head.files[0]) preview.style.display = "block",  
+                preview.style.width = "63px",  
+                preview.style.height = "63px",  
+                preview.src = window.navigator.userAgent.indexOf("Chrome") >= 1 || window.navigator.userAgent.indexOf("Safari") >= 1 ? window.webkitURL.createObjectURL(file_head.files[0]) : window.URL.createObjectURL(file_head.files[0]);  
+            else {  
+                file_head.select(),  
+                file_head.blur(),  
+                img_txt = document.selection.createRange().text,  
+                localImag = document.getElementById("localImag"),  
+                localImag.style.width = "63px",  
+                localImag.style.height = "63px";  
+                try {  
+                    localImag.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)",  
+                    localImag.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = img_txt  
+                } catch(f) {  
+                    return alert("您上传的图片格式不正确，请重新选择！"),  
+                    !1  
+                }  
+                preview.style.display = "none",  
+                document.selection.empty()  
+            }  
+            return document.getElementById("DivUp").style.display = "block",  
+            !0  
+        }
+		</script>
+	</body>
+	
+
+</html>
