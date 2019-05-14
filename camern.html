@@ -3,14 +3,34 @@
 <head>  
     <title>上传图片</title>  
     <meta charset="utf-8">  
-</head>  
+</head> 
+    <style>
+	
+	.fileinput-button {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+    .fileinput-button input{
+            position:absolute;
+            right: 0px;
+            top: 0px;
+            opacity: 0;
+            -ms-filter: 'alpha(opacity=0)';
+            font-size: 200px;
+        }
+</style>
 <body>  
     <iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>  
     <form name="formHead" method="post" action="" id="formHead" enctype="multipart/form-data" target="uploadfrm">  
   
         <div>  
             <div>  
-                <input type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();" />  
+                <span class="btn btn-success fileinput-button">
+			            <span>上传</span>
+			            <input type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();">
+			        </span> 
             </div>  
             <div>  
                 <div id="DivUp" style="display: none">  
