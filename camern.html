@@ -5,7 +5,10 @@
     <meta charset="utf-8">  
 </head> 
     <style>
-	
+       .nnn{
+		margin-left: 80px;
+		margin-top: 100px;
+	}
 	.fileinput-button {
             position: relative;
             display: inline-block;
@@ -26,11 +29,11 @@
     <form name="formHead" method="post" action="" id="formHead" enctype="multipart/form-data" target="uploadfrm">  
   
         <div>  
-            <div>  
+            <div class="nnn">  
                 <span class="btn btn-success fileinput-button">
-			            <span>上传</span>
-			            <input type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();">
-			        </span> 
+	            <span>上传</span>
+	            <input type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();">
+		</span> 
             </div>  
             <div>  
                 <div id="DivUp" style="display: none">  
